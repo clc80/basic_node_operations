@@ -20,6 +20,8 @@ function evaluateCmd(userInput) {
     case "cat":
       commandLibrary.cat(userInputArray.slice(1));
       break;
+    case "sort":
+      commandLibrary.sort(userInputArray.slice(1));
   }
 }
 
@@ -35,6 +37,16 @@ const commandLibrary = {
     fs.readFile(fileName, (err, data) => {
       if(err) throw err;
         done(data);
+    })
+  },
+  "sort": function(fullPath) {
+    const fileName = fullPath[0];
+    fs.readFile(fileName, (err, data) => {
+      if(err) throw err;
+        const array = data.toString().split("\n");
+        const sortedArray = array.sort();
+        const stringArray = sortedArray.join("\n");
+        done(stringArray);
     })
   }
 
