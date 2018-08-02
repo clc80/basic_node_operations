@@ -1,0 +1,33 @@
+Questions
+1. Run the commands sort, wc and uniq on the commands.js file. Explain how they work and what the output was.
+
+Sort: It took all the lines of code and sorted them in alphabetical order. Sort works by taking all the lines and putting them in a data structure like an array. Then it will sort the array and output the items as strings onto the terminal. 
+
+WC: Tells you how many \n are found, the number of words and the size of the file in bytes. The commands.js file has 62 \n 158 words and it's 1567 bytes. 
+The way it works is that it will take all the content in the file and store it in an array separating it by spaces. From the array you can then count the \n and the words which would be the elements that are not white space. For the size this is done with fs.stat(). 
+
+Uniq: Takes a list of items and removes adjacent duplicate lines. The way that uniq works is that it will divide the lines by \n into a data structure. They using a loop it will compare each line to the previous and if they are exactly the same it will delete it. 
+
+2. Using the pipe (|) connect at least two commands and run it on commands.js. Explain what the output was and why the specific data was outputted.
+I ran cat commands.js | sort and it only showed the sorted data from commands. The reason it did this is because the pipe command is for stdin and stdout not two stdout commands. 
+
+Programming Questions: 
+
+6. function reverseString(inputString) {
+  //Convert the string to array split by word
+   const inputArray = inputString.toString().split(" ");
+
+  //Reverse each word
+  let backwardsWord = [];
+
+  inputArray.forEach((word) => {
+    const wordArray = word.split("");
+    wordArray.reverse();
+    backwardsWord.push(wordArray.join(""));
+  })
+
+  //Join the array together and return it. 
+  return(backwardsWord.join(" "));
+}
+
+reverseString("I'm learning to program algorithms!");
