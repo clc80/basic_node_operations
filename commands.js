@@ -22,10 +22,19 @@ function evaluateCmd(userInput) {
       break;
     case "sort":
       commandLibrary.sort(userInputArray.slice(1));
+      break;
     case "wc":
       commandLibrary.wc(userInputArray.slice(1));
+      break;
     case "uniq":
       commandLibrary.uniq(userInputArray.slice(1));
+      break;
+    case "head":
+      commandLibrary.head(userInputArray.slice(1));
+      break;
+    case "tail":
+      commandLibrary.tail(userInputArray.slice(1));
+      break;
   }
 
 }
@@ -69,8 +78,28 @@ const commandLibrary = {
         }
         const stringArray = array.join("\n");
         done(stringArray);
-  })
-}
+    })
+  },
+  "head": function(fullPath) {
+    const fileName = fullPath[0];
+    fs.readFile(fileName, (err, data) => {
+      if(err) throw err;
+      const array = data.toString().split("\n");
+      var headArray = array.splice(0, 5);
+      const stringArray = headArray.join("\n");
+      done(stringArray);
+    })
+  },
+  "tail": function(fullPath) {
+    const fileName = fullPath[0];
+    fs.readFile(fileName, (err, data) => {
+      if(err) throw err;
+      const array = data.toString().split("\n");
+      var headArray = array.splice(-5);
+      const stringArray = headArray.join("\n");
+      done(stringArray);
+    })
+  }
 
 };
 
