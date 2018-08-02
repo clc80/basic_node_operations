@@ -22,7 +22,12 @@ function evaluateCmd(userInput) {
       break;
     case "sort":
       commandLibrary.sort(userInputArray.slice(1));
+    case "wc":
+      commandLibrary.wc(userInputArray.slice(1));
+    case "uniq":
+      commandLibrary.uniq(userInputArray.slice(1));
   }
+
 }
 
 //where we will store the Logic of our commands
@@ -48,7 +53,24 @@ const commandLibrary = {
         const stringArray = sortedArray.join("\n");
         done(stringArray);
     })
-  }
+  },
+  "wc": function(fullPath) {
+
+  },
+  "uniq": function(fullPath) {
+    const fileName = fullPath[0];
+    fs.readFile(fileName, (err, data) => {
+      if(err) throw err;
+        const array = data.toString().split("\n");
+        for(var i = 1; i < array.length; i++){
+          if (array[i] === array[i - 1]){
+            array.splice(i, 1);
+          }
+        }
+        const stringArray = array.join("\n");
+        done(stringArray);
+  })
+}
 
 };
 
