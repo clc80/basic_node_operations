@@ -35,6 +35,9 @@ function evaluateCmd(userInput) {
     case "tail":
       commandLibrary.tail(userInputArray.slice(1));
       break;
+    default:
+      console.log("Not a valid command \nprompt > ");
+      break;
   }
 
 }
